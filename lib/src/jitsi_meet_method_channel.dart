@@ -111,10 +111,9 @@ class MethodChannelJitsiMeet extends JitsiMeetPlatform {
   /// In order to get the participantId for the [to] parameter, the [JitsiMeetEventListener.participantsJoined]
   /// event should be listened for, which have as a parameter the participantId and this should be stored somehow.
   @override
-  Future<MethodResponse> sendEndpointTextMessage(
-      {String? to, required String message}) async {
-    return await methodChannel.invokeMethod<String>('sendEndpointTextMessage',
-        {'to': to ?? '', 'message': message}).then((message) {
+  Future<MethodResponse> sendEndpointTextMessage({String? to, required String message}) async {
+    return await methodChannel.invokeMethod<String>('sendEndpointTextMessage', {'to': to ?? '', 'message': message})
+        .then((message) {
       return MethodResponse(isSuccess: true, message: message);
     }).catchError((error) {
       return MethodResponse(
@@ -277,9 +276,7 @@ class MethodChannelJitsiMeet extends JitsiMeetPlatform {
           } else if (Platform.isIOS) {
             participantsInfo = data.toString();
           }
-          _listener?.participantsInfoRetrieved?.call(
-            participantsInfo,
-          );
+          _listener?.participantsInfoRetrieved?.call(participantsInfo,);
           break;
 
         case "readyToClose":

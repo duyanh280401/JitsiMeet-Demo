@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:jitsi_meet_flutter_sdk/jitsi_meet_flutter_sdk.dart';
 
 void main() {
@@ -22,21 +21,22 @@ class _MyAppState extends State<MyApp> {
 
   join() async {
     var options = JitsiMeetConferenceOptions(
-      room: "testgabigabi",
+      room: "Foodboy-channel",
       configOverrides: {
         "startWithAudioMuted": false,
         "startWithVideoMuted": false,
-        "subject": "Lipitori"
+        "subject": "Eat healthy"
       },
+      serverURL: 'https://meet.cmcati.vn',
       featureFlags: {
         "unsaferoomwarning.enabled": false,
         "ios.screensharing.enabled": true
       },
       userInfo: JitsiMeetUserInfo(
-          displayName: "Gabi",
-          email: "gabi.borlea.1@gmail.com",
+          displayName: "davux",
+          email: "davux@gmail.com",
           avatar:
-              "https://avatars.githubusercontent.com/u/57035818?s=400&u=02572f10fe61bca6fc20426548f3920d53f79693&v=4"),
+              "https://i.pinimg.com/564x/97/07/dd/9707ddbef620d0e91d6e799ff20b59bc.jpg"),
     );
 
     var listener = JitsiMeetEventListener(
@@ -166,45 +166,54 @@ class _MyAppState extends State<MyApp> {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  TextButton(
+                  ElevatedButton(
                     onPressed: join,
                     child: const Text("Join"),
                   ),
-                  TextButton(onPressed: hangUp, child: const Text("Hang Up")),
+                  ElevatedButton(
+                      onPressed: hangUp,
+                      child: const Text("Hang Up")
+                  ),
                   Row(children: [
                     const Text("Set Audio Muted"),
                     Checkbox(
                       value: audioMuted,
                       onChanged: setAudioMuted,
                     ),
-                  ]),
+                  ], mainAxisAlignment: MainAxisAlignment.center),
                   Row(children: [
                     const Text("Set Video Muted"),
                     Checkbox(
                       value: videoMuted,
                       onChanged: setVideoMuted,
                     ),
-                  ]),
-                  TextButton(
+                  ], mainAxisAlignment: MainAxisAlignment.center),
+                  ElevatedButton(
                       onPressed: sendEndpointTextMessage,
-                      child: const Text("Send Hey Endpoint Message To All")),
+                      child: const Text("Send Hey Endpoint Message To All")
+                  ),
                   Row(children: [
                     const Text("Toggle Screen Share"),
                     Checkbox(
                       value: screenShareOn,
                       onChanged: toggleScreenShare,
                     ),
-                  ]),
-                  TextButton(
-                      onPressed: openChat, child: const Text("Open Chat")),
-                  TextButton(
+                  ], mainAxisAlignment: MainAxisAlignment.center),
+                  ElevatedButton(
+                      onPressed: openChat,
+                      child: const Text("Open Chat")
+                  ),
+                  ElevatedButton(
                       onPressed: sendChatMessage,
-                      child: const Text("Send Chat Message to All")),
-                  TextButton(
-                      onPressed: closeChat, child: const Text("Close Chat")),
-                  TextButton(
+                      child: const Text("Send Chat Message to All")
+                  ),
+                  ElevatedButton(
+                      onPressed: closeChat, child: const Text("Close Chat")
+                  ),
+                  ElevatedButton(
                       onPressed: retrieveParticipantsInfo,
-                      child: const Text("Retrieve Participants Info")),
+                      child: const Text("Retrieve Participants Info")
+                  ),
                 ]),
           )),
     );
